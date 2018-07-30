@@ -37,12 +37,41 @@ table! {
         // profileHits -> Integer,
         // rankID -> Nullable<Integer>,
         // userTitle -> Varchar,
-        // userOnlineGroupID -> Nullable<Integer>,
+
+        #[sql_name = "userOnlineGroupID"]
+        user_online_group_id -> Nullable<Integer>,
         // activityPoints -> Integer,
         // notificationMailToken -> Varchar,
         // authData -> Varchar,
         // likesReceived -> Integer,
         // socialNetworkPrivacySettings -> Nullable<Text>,
         // wbbPosts -> Integer,
+    }
+}
+
+table! {
+    wcf_user_group (group_id) {
+        group_id -> Integer,
+        group_name -> Varchar,
+    }
+}
+
+table! {
+    wcf_rank (rank_id) {
+        rank_id -> Integer,
+        branch_id -> Integer,
+        name -> Varchar,
+        paygrade -> Varchar,
+        image -> Varchar,
+    }
+}
+
+table! {
+    wcf_branch (branch_id) {
+        branch_id -> Integer,
+        name -> Varchar,
+        image -> Varchar,
+        rank_unavailable_image -> Varchar,
+        is_disabled -> Bool,
     }
 }

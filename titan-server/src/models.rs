@@ -37,11 +37,35 @@ pub struct WcfUser {
     // pub profileHits: i32,
     // pub rankID: Option<i32>,
     // pub userTitle: String,
-    // pub userOnlineGroupID: Option<i32>,
+    pub user_online_group_id: Option<i32>,
     // pub activityPoints: i32,
     // pub notificationMailToken: String,
     // pub authData: String,
     // pub likesReceived: i32,
     // pub socialNetworkPrivacySettings: Option<String>,
     // pub wbbPosts: i32
+}
+
+#[derive(Serialize, Deserialize, Queryable)]
+pub struct WcfUserGroup {
+    pub group_id: i32,
+    pub group_name: String
+}
+
+#[derive(Serialize, Deserialize, Queryable)]
+pub struct WcfRank {
+    pub rank_id: i32,
+    pub branch_id: i32,
+    pub paygrade: String,
+    pub name: String,
+    pub image: String
+}
+
+#[derive(Serialize, Deserialize, Queryable)]
+pub struct WcfBranch {
+    pub branch_id: i32,
+    pub name: String,
+    pub image: String,
+    pub rank_unavailable_image: String,
+    pub is_disabled: bool
 }
