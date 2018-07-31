@@ -24,14 +24,14 @@ pub struct TitanPrimaryPool(pub Pool);
 /// Initializes a database pool.
 impl UnksoMainForumsPool {
     pub fn init_pool() -> UnksoMainForumsPool {
-        let manager = r2d2::ConnectionManager::<diesel::MysqlConnection>::new("mysql://root@localhost/unkso_main_forums");
+        let manager = r2d2::ConnectionManager::<diesel::MysqlConnection>::new("mysql://unkso_titan:development@127.0.0.1/unkso_main_forum");
         UnksoMainForumsPool(r2d2::Pool::new(manager).expect("db pool"))
     }
 }
 
 impl TitanPrimaryPool {
     pub fn init_pool() -> TitanPrimaryPool {
-        let manager = r2d2::ConnectionManager::<diesel::MysqlConnection>::new("mysql://root@localhost/titan_primary");
+        let manager = r2d2::ConnectionManager::<diesel::MysqlConnection>::new("mysql://unkso_titan:development@127.0.0.1/unkso_titan");
         TitanPrimaryPool(r2d2::Pool::new(manager).expect("db pool"))
     }
 }

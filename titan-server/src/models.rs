@@ -69,3 +69,11 @@ pub struct WcfBranch {
     pub rank_unavailable_image: String,
     pub is_disabled: bool
 }
+
+#[derive(Serialize, Deserialize, Queryable)]
+pub struct TitanBranch {
+    pub id: i32,
+    pub name: String,
+    pub wcf_user_group_id: i32,
+    pub is_enabled: bool
+}

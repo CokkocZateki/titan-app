@@ -12,6 +12,10 @@ fn main() {
     rocket::ignite()
         .manage(db::TitanPrimaryPool::init_pool())
         .manage(db::UnksoMainForumsPool::init_pool())
-        .mount("/users", routes![routes::hello, routes::test_database_conn])
+        .mount("/users", routes![
+            routes::hello,
+            routes::search_users,
+            routes::find_user
+        ])
         .launch();
 }

@@ -75,3 +75,12 @@ table! {
         is_disabled -> Bool,
     }
 }
+
+table! {
+    titan_branches (id) {
+        id -> Integer,
+        name -> Varchar,
+        wcf_user_group_id -> Integer,
+        is_enabled -> Bool,
+    }
+}
