@@ -1,4 +1,4 @@
-#![feature(plugin, decl_macro)]
+#![feature(plugin, decl_macro, extern_prelude)]
 #![plugin(rocket_codegen)]
 #![recursion_limit="256"]
 

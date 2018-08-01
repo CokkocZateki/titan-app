@@ -50,9 +50,22 @@ table! {
 }
 
 table! {
-    wcf_user_group (group_id) {
+    wcf1_user_group (group_id) {
+        #[sql_name = "groupID"]
         group_id -> Integer,
+
+        #[sql_name = "groupName"]
         group_name -> Varchar,
+    }
+}
+
+table! {
+    wcf1_user_to_group (user_id, group_id) {
+        #[sql_name = "userID"]
+        user_id -> Integer,
+
+        #[sql_name = "groupID"]
+        group_id -> Integer,
     }
 }
 
