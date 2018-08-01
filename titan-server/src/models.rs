@@ -1,3 +1,5 @@
+use super::schema::{titan_branches};
+
 #[derive(Serialize, Deserialize, Queryable)]
 pub struct WcfUser {
     pub user_id: i32,
@@ -76,7 +78,8 @@ pub struct WcfBranch {
     pub is_disabled: bool
 }
 
-#[derive(Serialize, Deserialize, Queryable)]
+#[derive(Identifiable, Serialize, Deserialize, Queryable)]
+#[table_name="titan_branches"]
 pub struct TitanBranch {
     pub id: i32,
     pub name: String,
