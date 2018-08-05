@@ -3,7 +3,7 @@
 #![recursion_limit="256"]
 
 extern crate rocket;
-extern crate rocket_contrib;
+#[macro_use] extern crate rocket_contrib;
 #[macro_use] extern crate diesel;
 extern crate serde;
 #[macro_use] extern crate serde_derive;

@@ -70,6 +70,17 @@ table! {
 }
 
 table! {
+    wcf1_user_activity_event (event_id) {
+        #[sql_name = "eventID"]
+        event_id -> Integer,
+
+        #[sql_name = "userID"]
+        user_id -> Integer,
+        time -> Nullable<Integer>,
+    }
+}
+
+table! {
     wcf_rank (rank_id) {
         rank_id -> Integer,
         branch_id -> Integer,

@@ -61,6 +61,13 @@ pub struct WcfUserToGroup {
 }
 
 #[derive(Serialize, Deserialize, Queryable)]
+pub struct WcfUserActivityEvent {
+    pub event_id: i32,
+    pub user_id: i32,
+    pub time: i32
+}
+
+#[derive(Serialize, Deserialize, Queryable)]
 pub struct WcfRank {
     pub rank_id: i32,
     pub branch_id: i32,
