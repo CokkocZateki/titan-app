@@ -2,7 +2,7 @@ use super::db::{UnksoMainForums, TitanPrimary};
 use super::models;
 use rocket_contrib::Json;
 use diesel::prelude::*;
-use super::schema::*;
+use super::schema::{self, wcf1_user_to_group, wcf1_user, wcf1_user_group};
 
 #[get("/hello")]
 pub fn hello() -> &'static str {
@@ -20,8 +20,8 @@ pub struct SearchUsersRequest {
 
 #[get("/?<search_request>")]
 pub fn search_users(search_request: SearchUsersRequest, unkso_main: UnksoMainForums, unkso_titan: TitanPrimary) -> Json<Vec<models::WcfUser>> {
-     use schema::titan_branches::dsl::*;
-     use schema::wcf1_user_to_group::dsl::*;
+     use schema::titan_branches::dsl::{id, is_enabled};
+     use schema::wcf1_user_to_group::dsl::{wcf1_user_to_group, group_id};
 
     let mut users_query = wcf1_user_to_group
         .inner_join(wcf1_user::table)
@@ -30,13 +30,17 @@ pub fn search_users(search_request: SearchUsersRequest, unkso_main: UnksoMainFor
         .into_boxed();
 
     if search_request.branch > 0 {
-        let branches = titan_branches
-            .filter(is_enabled.eq(true))
-            .filter(titan_branches::id.eq(search_request.branch))
-            .first::<models::TitanBranch>(&*unkso_titan)
-            .unwrap();
+        let branch_query = schema::titan_branches::table
+            .filter(schema::titan_branches::is_enabled.eq(true))
+            .filter(schema::titan_branches::id.eq(search_request.branch))
+            .first::<models::TitanBranch>(&*unkso_titan);
 
-        users_query = users_query.filter(group_id.eq(search_request.branch));
+        if branch_query.is_ok() {
+            let branch = branch_query.unwrap();
+            users_query = users_query.filter(group_id.eq(branch.wcf_user_group_id));
+        } else {
+            return Json(vec![]);
+        }
     }
 
     let users = users_query.load::<models::WcfUser>(&*unkso_main).unwrap();
