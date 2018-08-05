@@ -3,6 +3,7 @@ import registerServiceWorker from './registerServiceWorker'
 import { getTitanInstance } from 'titan-core'
 import devConfig from './config/config.dev'
 import prodConfig from './config/config.prod'
+import RosterModule from './roster'
 import './app.css'
 
 let config
@@ -14,6 +15,9 @@ if (!process.env.NODE_ENV || process.env.NODE_ENV === 'development') {
 
 const app = getTitanInstance()
 app.setConfig(config)
+app.useModules([
+  RosterModule
+])
 
 ReactDOM.render(app.mount(), document.getElementById('root'))
 registerServiceWorker()

@@ -1,9 +1,9 @@
-import DashboardScene from './scenes/DashboardScene'
+import BranchOverviewScene from './scenes/BranchOverviewScene'
 
 export default [
   {
-    path: '/dashboard',
+    path: '/dashboard/roster/branch',
     layout: 'dashboard',
-    scene: DashboardScene
+    scene: BranchOverviewScene
   }
 ]
