@@ -1,9 +1,9 @@
 [[global.databases]]
 name = "unkso_main_forums"
-url = "mysql://root@localhost/unkso_main_forums"
+url = "mysql://unkso_titan:development@127.0.0.1/unkso_main_forum"
 pool_size = 10
 
 [[global.databases]]
 name = "titan_primary"
-url = "mysql://root@localhost/titan_primary"
+url = "mysql://unkso_titan:development@127.0.0.1/titan_primary"
 pool_size = 10

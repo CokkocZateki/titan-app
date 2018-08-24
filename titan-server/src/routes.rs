@@ -11,7 +11,7 @@ pub fn hello() -> &'static str {
 
 joinable!(wcf1_user_to_group -> wcf1_user (user_id));
 joinable!(wcf1_user_to_group -> wcf1_user_group (group_id));
-joinable!(wcf1_user -> wcf1_user_activity_event (userID));
+joinable!(wcf1_user_activity_event -> wcf1_user (user_id));
 allow_tables_to_appear_in_same_query!(wcf1_user_to_group, wcf1_user, wcf1_user_group, wcf1_user_activity_event);
 
 #[derive(FromForm)]
@@ -28,6 +28,7 @@ pub fn search_users(search_request: SearchUsersRequest, unkso_main: UnksoMainFor
         .inner_join(wcf1_user::table.left_join(wcf1_user_activity_event::table))
         .inner_join(wcf1_user_group::table)
         .select((wcf1_user::all_columns, wcf1_user_activity_event::time))
+        .grouped_by(wcf1_user::userID)
         .into_boxed();
 
     if search_request.branch > 0 {
