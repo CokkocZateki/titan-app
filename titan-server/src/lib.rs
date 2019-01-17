@@ -19,6 +19,5 @@ pub mod schema;
 pub mod woltlab_auth_helper;
 pub mod auth_guard;
 pub mod config;
-pub mod cors_fairing;
 pub mod accounts;
 pub mod organizations;
